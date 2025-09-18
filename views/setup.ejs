@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Setup Match</title>
+    <title>Buat Pertandingan Baru</title>
     <link rel="stylesheet" href="/style.css" />
 </head>
 
@@ -13,11 +13,11 @@
         <div class="container container-500">
             <h2>Buat Pertandingan Baru</h2>
             <form method="POST" action="/setup" autocomplete="off">
-                <div class="input-group">
-                    <label>Game:</label>
+                <div class="form-group">
+                    <label>Nama permainan:</label>
                     <select name="gameId" id="gamePreset" required>
                         <option value="" selected data-total-players="" data-max-score="" data-allow-negative=""
-                            data-win-by-two="">- Choose game -</option>
+                            data-win-by-two="">- Pilih permainan -</option>
                         <% gamePresets.forEach(gp=> { %>
                             <option value="<%= gp._id %>" data-total-players="<%= gp.totalPlayers %>"
                                 data-max-score="<%= gp.maxScore %>" data-allow-negative="<%= gp.allowNegative %>"
@@ -28,30 +28,30 @@
                     </select>
                 </div>
 
-                <div class="input-group">
-                    <label for="">Max Score: </label>
+                <div class="form-group">
+                    <label for="">Skor maksimal: </label>
                     <span class="gdata" id="maxScore">&nbsp;</span>
                 </div>
 
-                <div class="input-group">
-                    <label for="">Allow Negative: </label>
+                <div class="form-group">
+                    <label for="">Ada nilai negatif: </label>
                     <span class="gdata" id="allowNegative">&nbsp;</span>
                 </div>
 
-                <div class="input-group">
-                    <label for="">Win by Two: </label>
+                <div class="form-group">
+                    <label for="">Menang beda 2 poin: </label>
                     <span class="gdata" id="winByTwo">&nbsp;</span>
                 </div>
 
-                <div class="input-group">
+                <div class="form-group">
                     <label>Nama Pemain (pisahkan dengan koma): </label>
                     <input type="text" name="playerNames" placeholder="Andi,Budi" />
                 </div>
 
-                <div class="input-group">
+                <div class="form-group">
                     <button type="submit" class="button">Mulai</button>
+                    <a href="/" class="button button-back">Kembali</a>
                 </div>
-                <a href="/" class="button button-back">Kembali</a>
             </form>
         </div>
 </body>
@@ -72,8 +72,8 @@
             const gameName = selectedGame.textContent;
             const { totalPlayers, maxScore, allowNegative, winByTwo } = selectedGame.dataset;
             console.log(allowNegative, winByTwo)
-            let allowNegativeLabel = (allowNegative === 'true') ? 'Yes' : 'No'
-            let winByTwoLabel = (winByTwo === 'true') ? 'Yes' : 'No'
+            let allowNegativeLabel = (allowNegative === 'true') ? 'Ya' : 'Tidak'
+            let winByTwoLabel = (winByTwo === 'true') ? 'Ya' : 'Tidak'
 
             document.querySelector('#maxScore').innerHTML = maxScore;
             document.querySelector('#allowNegative').innerHTML = allowNegativeLabel;

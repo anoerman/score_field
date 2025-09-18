@@ -148,11 +148,34 @@ p.description {
     margin-bottom: 2em;
 }
 
-.input-group {
+.form-group {
     margin-bottom: 1.5em;
     text-align: left;
-    width: 100%; /* Menjamin input-group juga menggunakan lebar penuh */
+    width: 100%; /* Menjamin form-group juga menggunakan lebar penuh */
 }
+
+/* Container untuk setiap radio button */
+.radio-group {
+    display: flex; /* Menggunakan Flexbox untuk tata letak */
+    align-items: center; /* Menyelaraskan item secara vertikal di tengah */
+    gap: 0.5em; /* Memberi jarak antara input dan label */
+    margin-bottom: 0.5em; /* Jarak antara setiap grup radio button */
+}
+
+/* Style untuk input radio itu sendiri */
+.radio-group input[type="radio"] {
+    margin: 0; /* Menghilangkan margin bawaan browser */
+    cursor: pointer;
+}
+
+/* Style untuk label */
+.radio-group label {
+    margin: 0; /* Menghilangkan margin bawaan label */
+    font-weight: normal; /* Mengatur ulang weight agar tidak terlalu tebal */
+    color: #333;
+    cursor: pointer;
+}
+
 
 label {
     display: block;
@@ -161,7 +184,7 @@ label {
     color: #555;
 }
 
-input, select {
+input:not([type="radio"]):not([type="checkbox"]), select {
     width: 100%;
     padding: 12px;
     border: 1px solid #ddd;
@@ -189,6 +212,9 @@ input:focus {
     transition: background-color 0.3s, transform 0.1s;
     width: 100%;
     text-decoration: none;
+    display:block;
+    text-align: center;
+    margin-bottom: 0.5em;
 }
 
 .button:hover {
@@ -340,4 +366,40 @@ table tbody tr:last-of-type {
 table tbody tr:hover {
     background-color: #e2f0fb; /* Warna latar belakang saat di-hover */
     cursor: pointer;
+}
+
+/* Styling untuk baris */
+.row {
+    display: flex;
+    flex-wrap: wrap; /* Memungkinkan kolom pindah ke baris baru saat layar kecil */
+    margin: 0 -15px; /* Margin negatif untuk mengimbangi padding kolom */
+}
+
+/* Styling untuk kolom */
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+    padding: 0 15px; /* Jarak kiri-kanan di dalam kolom */
+    box-sizing: border-box;
+}
+
+/* Lebar kolom dalam persen (berdasarkan sistem grid 12 kolom) */
+.col-1 { flex: 0 0 8.33333%; max-width: 8.33333%; }
+.col-2 { flex: 0 0 16.66667%; max-width: 16.66667%; }
+.col-3 { flex: 0 0 25%; max-width: 25%; }
+.col-4 { flex: 0 0 33.33333%; max-width: 33.33333%; }
+.col-5 { flex: 0 0 41.66667%; max-width: 41.66667%; }
+.col-6 { flex: 0 0 50%; max-width: 50%; }
+.col-7 { flex: 0 0 58.33333%; max-width: 58.33333%; }
+.col-8 { flex: 0 0 66.66667%; max-width: 66.66667%; }
+.col-9 { flex: 0 0 75%; max-width: 75%; }
+.col-10 { flex: 0 0 83.33333%; max-width: 83.33333%; }
+.col-11 { flex: 0 0 91.66667%; max-width: 91.66667%; }
+.col-12 { flex: 0 0 100%; max-width: 100%; }
+
+/* Tambahan: Responsif dengan Media Queries */
+/* Kolom tumpuk pada layar yang lebih kecil */
+@media (max-width: 768px) {
+    .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }

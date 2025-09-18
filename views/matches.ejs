@@ -3,21 +3,22 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>My Matches</title>
+    <title>Data Pertandingan</title>
     <link rel="stylesheet" href="/style.css" />
 </head>
 
 <body>
     <%- include('partials/_nav') %>
         <div class="container">
-            <h1>Daftar Pertandingan</h1>
+            <h1>Data Pertandingan</h1>
             <table>
                 <thead>
                     <tr>
-                        <th>Game Name</th>
+                        <th>Tanggal</th>
+                        <th>Name Permainan</th>
                         <th>Status</th>
-                        <th>Player</th>
-                        <th>Winner</th>
+                        <th>Pemain</th>
+                        <th>Pemenang</th>
                         <% if (user.isAdmin) { %>
                             <th>User</th>
                             <% } %>
@@ -26,6 +27,9 @@
                 <tbody>
                     <% list.forEach(m=> { %>
                         <tr>
+                            <td>
+                                <%= m.createdAt.toDateString() %>
+                            </td>
                             <td>
                                 <%= m.gameName %>
                             </td>
