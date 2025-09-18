@@ -9,13 +9,24 @@ router.get('/login', (req, res) => {
 router.post('/login', async (req, res) => {
     const { username, password } = req.body
     const user = await User.findOne({ username })
+
     if (!user || !(await user.comparePassword(password))) {
         req.session.flash = { type: 'danger', message: 'Wrong username or password!' }
         return res.redirect('/auth/login')
     }
+
     req.session.user = { id: user._id, username: user.username, isAdmin: user.isAdmin ?? false }
-    res.redirect('/matches')
-})
+    
+    // Simpan sesi secara eksplisit sebelum redirect
+    req.session.save((err) => {
+        if (err) {
+            // Handle error jika sesi gagal disimpan
+            console.error('Failed to save session:', err);
+            return res.status(500).send('Login failed due to a server error.');
+        }
+        res.redirect('/matches');
+    });
+});
 
 router.get('/register', (req, res) => {
     res.render('register')
