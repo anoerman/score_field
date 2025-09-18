@@ -1,0 +1,343 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+
+    /* Menggunakan Flexbox pada body untuk mengatur tata letak */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Rata tengah horizontal untuk semua konten */
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+/* Mengatur ulang posisi navbar agar tidak terpengaruh oleh flexbox body */
+.navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.navbar-logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #4a90e2;
+    text-decoration: none;
+}
+
+.navbar-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 25px;
+}
+
+.navbar-links li a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.navbar-links li a:hover {
+    color: #4a90e2;
+}
+
+.navbar-button {
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.navbar-button:hover {
+    background-color: #357bd9;
+}
+
+.navbar-button:active {
+    transform: scale(0.98);
+}
+
+/* Menambahkan jarak atas untuk konten agar tidak menempel ke navbar */
+.alert-container,
+.container {
+    margin-top: 20px;
+}
+
+.alert-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.alert {
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 500;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid transparent;
+}
+
+.alert.success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.alert.danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+.container {
+    background-color: #fff;
+    padding: 2.5em;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    /* max-width: 500px; */
+    text-align: center;
+}
+
+.container.container-500 {
+    max-width: 500px;
+}
+
+h1 {
+    color: #4a90e2;
+    margin-bottom: 0.5em;
+    font-size: 2em;
+}
+
+h2 {
+    color: #4a90e2;
+    margin-bottom: 0.5em;
+    font-size: 1.5em;
+}
+
+p.description {
+    color: #666;
+    margin-bottom: 2em;
+}
+
+.input-group {
+    margin-bottom: 1.5em;
+    text-align: left;
+    width: 100%; /* Menjamin input-group juga menggunakan lebar penuh */
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    color: #555;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box; /* Sangat penting agar padding tidak menambah lebar */
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+.button {
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.1s;
+    width: 100%;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #357bd9;
+}
+
+.button:active {
+    transform: scale(0.98);
+}
+
+.button.button-back {
+    background-color: #e0222b;
+}
+
+.button.button-back:hover {
+    background-color: #b4262d;
+}
+
+.result-box {
+    margin-top: 2em;
+    padding: 1.5em;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.result-box h2 {
+    color: #4a90e2;
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.players {
+    display: flex; /* Mengaktifkan Flexbox untuk tata letak baris */
+    justify-content: center; /* Menyelaraskan pemain di tengah horizontal */
+    align-items: flex-start; /* Menyelaraskan pemain ke bagian atas kontainer */
+    flex-wrap: wrap; /* Memungkinkan pemain pindah ke baris baru jika ruang tidak cukup */
+    gap: 20px; /* Jarak antara setiap pemain */
+}
+
+.player-card {
+    background-color: #fff;
+    padding: 2em;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1 1 250px; /* Properti Flexbox yang membuat responsif */
+    max-width: 300px;
+    min-width: 200px;
+}
+
+.score {
+    font-size: 3em;
+    font-weight: bold;
+    color: #2ecc71; /* Warna hijau untuk skor yang menonjol */
+    margin: 0.2em 0;
+}
+
+/* Gaya untuk kontainer tombol agar rapi */
+.score-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Jarak antara kedua tombol */
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+/* Gaya dasar untuk semua tombol skor */
+.score-button {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.2s;
+    flex-grow: 1; /* Agar tombol memiliki lebar yang fleksibel */
+    max-width: 150px;
+}
+
+/* Gaya khusus untuk tombol '+1' */
+.score-button.add-one {
+    background-color: #2ecc71; /* Hijau */
+}
+
+.score-button.add-one:hover {
+    background-color: #27ae60;
+}
+
+/* Gaya khusus untuk tombol '-1' */
+.score-button.subtract-one {
+    background-color: #db4534; /* Merah */
+}
+
+.score-button.subtract-one:hover {
+    background-color: #be3c2e;
+}
+
+/* Efek saat tombol ditekan */
+.score-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling dasar untuk semua tabel */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Menggabungkan border sel yang berdekatan */
+    margin: 25px 0; /* Memberikan jarak atas dan bawah */
+    font-size: 0.9em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); /* Bayangan lembut untuk efek "mengambang" */
+    border-radius: 8px;
+    overflow: hidden; /* Penting untuk menerapkan border-radius pada tabel */
+}
+
+/* Styling untuk header tabel */
+table thead tr {
+    background-color: #4a90e2; /* Warna latar belakang header biru */
+    color: #ffffff;
+    /* text-align: left; */
+    font-weight: bold;
+}
+
+/* Styling untuk sel header (<th>) dan sel data (<td>) */
+table th,
+table td {
+    padding: 12px 15px; /* Jarak di dalam sel */
+}
+
+/* Styling untuk baris ganjil dan genap (striping) */
+table tbody tr {
+    border-bottom: 1px solid #dddddd; /* Garis pemisah antar baris */
+}
+
+table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3; /* Warna latar belakang abu-abu terang untuk baris genap */
+}
+
+/* Styling untuk baris terakhir tanpa garis bawah */
+table tbody tr:last-of-type {
+    border-bottom: 2px solid #4a90e2; /* Garis bawah yang lebih tebal pada baris terakhir */
+}
+
+/* Efek hover pada baris */
+table tbody tr:hover {
+    background-color: #e2f0fb; /* Warna latar belakang saat di-hover */
+    cursor: pointer;
+}

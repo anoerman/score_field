@@ -1,0 +1,24 @@
+<nav class="navbar">
+    <a href="/" class="navbar-logo">Scoreboard</a>
+    <ul class="navbar-links">
+        <% if (user) { %>
+            <li><a href="/matches">Matches</a></li>
+            <% if (user.isAdmin) { %>
+                <li><a href="/game-presets">Game Setup</a></li>
+                <% } %>
+                    <form action="/auth/logout" method="post" style="display:inline">
+                        <li><button type="submit" class="navbar-button">Logout (<%= user.username %>)</button></li>
+                    </form>
+                    <% } else { %>
+                        <li><a href="/auth/login">Login</a></li>
+                        <li><a href="/auth/register">Register</a></li>
+                        <% } %>
+    </ul>
+</nav>
+<% if (flash) { %>
+    <div class="alert-container">
+        <div class="alert <%= flash.type %>">
+            <%= flash.message %>
+        </div>
+    </div>
+    <% } %>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>My Matches</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+    <%- include('partials/_nav') %>
+        <div class="container">
+            <h1>Daftar Pertandingan</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Game Name</th>
+                        <th>Status</th>
+                        <th>Player</th>
+                        <th>Winner</th>
+                        <% if (user.isAdmin) { %>
+                            <th>User</th>
+                            <% } %>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% list.forEach(m=> { %>
+                        <tr>
+                            <td>
+                                <%= m.gameName %>
+                            </td>
+                            <td>
+                                <%= m.status %>
+                            </td>
+                            <td>
+                                <% for (const key in m.players) { if (Object.prototype.hasOwnProperty.call(m.players,
+                                    key)) { const player=m.players[key]; %>
+                                    <%= player.name %><br>
+                                        <% } } %>
+                            </td>
+                            <td>
+                                <% if (m.winner) { %>
+                                    <%= m.winner %>
+                                        <% } %>
+                            </td>
+                            <% if (user.isAdmin) { %>
+                                <td>
+                                    <% if (m.createdBy) { %>
+                                        <span class="user-name">
+                                            <%= m.createdBy.username %>
+                                        </span>
+                                        <% } %>
+                                </td>
+                                <% } %>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+</body>
+
+</html>

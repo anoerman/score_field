@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Setup Match</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+    <%- include('partials/_nav') %>
+
+        <div class="container container-500">
+            <h2>Buat Pertandingan Baru</h2>
+            <form method="POST" action="/setup" autocomplete="off">
+                <div class="input-group">
+                    <label>Game:</label>
+                    <select name="gameId" id="gamePreset" required>
+                        <option value="" selected data-total-players="" data-max-score="" data-allow-negative=""
+                            data-win-by-two="">- Choose game -</option>
+                        <% gamePresets.forEach(gp=> { %>
+                            <option value="<%= gp._id %>" data-total-players="<%= gp.totalPlayers %>"
+                                data-max-score="<%= gp.maxScore %>" data-allow-negative="<%= gp.allowNegative %>"
+                                data-win-by-two="<%= gp.winByTwo %>">
+                                <%= gp.name %>
+                            </option>
+                            <% }) %>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="">Max Score: </label>
+                    <span class="gdata" id="maxScore">&nbsp;</span>
+                </div>
+
+                <div class="input-group">
+                    <label for="">Allow Negative: </label>
+                    <span class="gdata" id="allowNegative">&nbsp;</span>
+                </div>
+
+                <div class="input-group">
+                    <label for="">Win by Two: </label>
+                    <span class="gdata" id="winByTwo">&nbsp;</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Nama Pemain (pisahkan dengan koma): </label>
+                    <input type="text" name="playerNames" placeholder="Andi,Budi" />
+                </div>
+
+                <div class="input-group">
+                    <button type="submit" class="button">Mulai</button>
+                </div>
+                <a href="/" class="button button-back">Kembali</a>
+            </form>
+        </div>
+</body>
+<script>
+    const gameSelect = document.getElementById('gamePreset');
+    const gdataClass = document.getElementsByClassName('gdata');
+
+    gameSelect.addEventListener('change', (event) => {
+        // change the innerHTML of each selected element
+        for (var i = 0; i < gdataClass.length; i++) {
+            gdataClass[i].innerHTML = "";
+        }
+
+        // Get selected value
+        const selectedGame = event.target.options[event.target.selectedIndex];
+        if (selectedGame.value) {
+            // Ambil data-*
+            const gameName = selectedGame.textContent;
+            const { totalPlayers, maxScore, allowNegative, winByTwo } = selectedGame.dataset;
+            console.log(allowNegative, winByTwo)
+            let allowNegativeLabel = (allowNegative === 'true') ? 'Yes' : 'No'
+            let winByTwoLabel = (winByTwo === 'true') ? 'Yes' : 'No'
+
+            document.querySelector('#maxScore').innerHTML = maxScore;
+            document.querySelector('#allowNegative').innerHTML = allowNegativeLabel;
+            document.querySelector('#winByTwo').innerHTML = winByTwoLabel;
+        }
+    })
+</script>
+
+</html>

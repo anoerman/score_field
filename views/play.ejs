@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play <%= fieldData.name %></title>
+    <style>
+        body {
+            text-align: center;
+        }
+        .score-data, .score-action {
+            padding: 5px 10px;
+            font-size: 20px;
+        }
+        .score-button {
+            padding: 10px 20px;
+            font-size: 20px;
+            color: white;
+        }
+        .score-add {
+            background-color: rgb(6, 203, 6);
+            border: 0px;
+            border-radius: 5px;
+        }
+        .score-subtract {
+            background-color: rgb(249, 19, 19);
+            border: 0px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <table border="10px black">
+        <tr>
+            <% for( let index = 0; index < fieldData.player; index++ ) { %>
+                <td>
+                    <div class="score-data">Name</div>
+                    <div class="score-data">0</div>
+                    <div class="score-action">
+                        <button class="score-button score-add">+</button>
+                        <button class="score-button score-subtract">-</button>
+                    </div>
+                </td>
+            <% } %>
+        </tr>
+    </table>
+</body>
+</html>

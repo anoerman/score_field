@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Presets</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+    <%- include('partials/_nav') %>
+        <div class="container">
+            <h2>Daftar Preset</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Game Name</th>
+                        <th>Total Player</th>
+                        <th>Max Score</th>
+                        <th>Allow Negative</th>
+                        <th>Win By Two</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% list.forEach(g=> { %>
+                        <tr>
+                            <td>
+                                <%= g.name %>
+                            </td>
+                            <td>
+                                <%= g.totalPlayers %>
+                            </td>
+                            <td>
+                                <%= g.maxScore %>
+                            </td>
+                            <td>
+                                <%= (g.allowNegative) ? 'Yes' : 'No' %>
+                            </td>
+                            <td>
+                                <%= (g.winByTwo) ? 'Yes' : 'No' %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+</body>
+
+</html>

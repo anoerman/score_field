@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Scoreboard</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+    <%- include('partials/_nav') %>
+    
+    <div class="container">
+            <h1>Scoreboard - <%= match.gameName %>
+            </h1>
+            <p id="status">Status: <%= match.status %>
+            </p>
+            <h3 id="winner"></h3>
+
+            <div class="result-box">
+                <div id="players" class="players"></div>
+            </div>
+
+            <% if (user) { %>
+                <form id="saveForm" method="POST" action="/scoreboard/save">
+                    <input type="hidden" name="matchData" id="matchData" />
+                    <button type="submit">Simpan Pertandingan</button>
+                </form>
+                <% } %>
+    </div>
+
+    <script>
+        // Data awal dari server
+        window.matchData = <%- JSON.stringify(match) %>;
+
+
+        function render() {
+            const list = document.getElementById('players');
+            list.innerHTML = '';
+            window.matchData.players.forEach((p, idx) => {
+                const scoreDiv = document.createElement('div');
+                scoreDiv.className = 'player-card';
+                scoreDiv.innerHTML = `<h2>${p.name}</h2><p class="score">${p.score}</p> ${window.matchData.status === 'ongoing' ? `
+                        <div class="score-buttons-container">
+                            <button onclick="dec(${idx})" class="score-button subtract-one">-1</button>
+                            <button onclick="inc(${idx})" class="score-button add-one">+1</button>
+                        </div>
+                    ` : ''}
+                    `;
+                list.appendChild(scoreDiv);
+            });
+
+            // status & winner
+            document.getElementById('status').innerText = 'Status: ' + window.matchData.status;
+            document.getElementById('winner').innerText = window.matchData.winner ? 'Pemenang: ' + window.matchData.winner : '';
+        }
+
+        function inc(i) {
+            window.matchData.players[i].score++;
+            checkWinner();
+            render();
+        }
+        function dec(i) {
+            if (window.matchData.allowNegative || window.matchData.players[i].score > 0) {
+                window.matchData.players[i].score--;
+                checkWinner();
+                render();
+            }
+        }
+
+        function checkWinner() {
+            const max = window.matchData.maxScore;
+            const players = window.matchData.players;
+            const top = players.reduce((a, b) => a.score > b.score ? a : b);
+            if (top.score >= max) {
+                window.matchData.status = 'finished';
+                window.matchData.winner = top.name;
+            }
+        }
+
+        // sebelum submit simpan data ke hidden input
+        const form = document.getElementById('saveForm');
+        if (form) {
+            form.addEventListener('submit', () => {
+                document.getElementById('matchData').value = JSON.stringify(window.matchData);
+            });
+        }
+
+        render();
+    </script>
+</body>
+
+</html>
