@@ -37,19 +37,15 @@ router.get('/setup', async (req, res) => {
 // Save setup
 router.post('/setup', async (req, res) => {
     const { gameId, playerNames } = req.body
-    const names = (playerNames || '')
-        .split(',')
-        .map(n => n.trim())
-        .filter(Boolean)
 
     // Get game
     const gameDetail = await GamePreset.findById(gameId)
     if (!gameDetail) {
         return res.status(404).json({ message: 'Game not found' });
     }
-    const total = parseInt(gameDetail.totalPlayers || names.length || 2, 10)
+    const total = parseInt(gameDetail.totalPlayers || playerNames.length || 2, 10)
     const players = Array.from({ length: total }).map((_, i) => ({
-        name: names[i] || `Player ${i + 1}`,
+        name: playerNames[i] || `Player ${i + 1}`,
         score: 0
     }))
 

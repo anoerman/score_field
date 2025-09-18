@@ -28,24 +28,30 @@
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="">Skor maksimal: </label>
-                    <span class="gdata" id="maxScore">&nbsp;</span>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="">Skor maksimal: </label>
+                            <span class="gdata" id="maxScore">&nbsp;</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="">Ada nilai negatif: </label>
+                            <span class="gdata" id="allowNegative">&nbsp;</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="">Menang beda 2 poin: </label>
+                            <span class="gdata" id="winByTwo">&nbsp;</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="">Ada nilai negatif: </label>
-                    <span class="gdata" id="allowNegative">&nbsp;</span>
-                </div>
-
-                <div class="form-group">
-                    <label for="">Menang beda 2 poin: </label>
-                    <span class="gdata" id="winByTwo">&nbsp;</span>
-                </div>
-
-                <div class="form-group">
-                    <label>Nama Pemain (pisahkan dengan koma): </label>
-                    <input type="text" name="playerNames" placeholder="Andi,Budi" />
+                    <label for="">Nama Pemain:</label>
+                    <div id="playerDiv">&nbsp;</div>
                 </div>
 
                 <div class="form-group">
@@ -71,13 +77,18 @@
             // Ambil data-*
             const gameName = selectedGame.textContent;
             const { totalPlayers, maxScore, allowNegative, winByTwo } = selectedGame.dataset;
-            console.log(allowNegative, winByTwo)
-            let allowNegativeLabel = (allowNegative === 'true') ? 'Ya' : 'Tidak'
-            let winByTwoLabel = (winByTwo === 'true') ? 'Ya' : 'Tidak'
 
             document.querySelector('#maxScore').innerHTML = maxScore;
-            document.querySelector('#allowNegative').innerHTML = allowNegativeLabel;
-            document.querySelector('#winByTwo').innerHTML = winByTwoLabel;
+            document.querySelector('#allowNegative').innerHTML = (allowNegative === 'true') ? 'Ya' : 'Tidak';
+            document.querySelector('#winByTwo').innerHTML = (winByTwo === 'true') ? 'Ya' : 'Tidak';
+
+            // Set players
+            document.querySelector('#playerDiv').innerHTML = '' // Clear
+            for (let index = 0; index < totalPlayers; index++) {
+                document.querySelector('#playerDiv').innerHTML += `<div class="form-group">
+                        <input type="text" name="playerNames[]" placeholder="Pemain ${index + 1}" />
+                    </div>`
+            }
         }
     })
 </script>
