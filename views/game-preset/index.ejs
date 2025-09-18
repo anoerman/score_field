@@ -4,22 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Presets</title>
+    <title>Daftar Preset Permainan</title>
     <link rel="stylesheet" href="/style.css" />
 </head>
 
 <body>
-    <%- include('partials/_nav') %>
+    <%- include('../partials/_nav') %>
         <div class="container">
-            <h2>Daftar Preset</h2>
+            <h2>Daftar Preset Permainan</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Game Name</th>
-                        <th>Total Player</th>
-                        <th>Max Score</th>
-                        <th>Allow Negative</th>
-                        <th>Win By Two</th>
+                        <th>Nama Permainan</th>
+                        <th>Jumlah Pemain</th>
+                        <th>Skor Maksimal</th>
+                        <th>Boleh Skor Negatif</th>
+                        <th>Menang beda 2 poin</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,15 +35,17 @@
                                 <%= g.maxScore %>
                             </td>
                             <td>
-                                <%= (g.allowNegative) ? 'Yes' : 'No' %>
+                                <%= (g.allowNegative) ? 'Ya' : 'Tidak' %>
                             </td>
                             <td>
-                                <%= (g.winByTwo) ? 'Yes' : 'No' %>
+                                <%= (g.winByTwo) ? 'Ya' : 'Tidak' %>
                             </td>
                         </tr>
                         <% }) %>
                 </tbody>
             </table>
+
+            <a href="/game-presets/new" class="button">Preset Permainan Baru</a>
         </div>
 </body>
 
