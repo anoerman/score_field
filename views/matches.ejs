@@ -15,13 +15,13 @@
                 <thead>
                     <tr>
                         <th>Tanggal</th>
-                        <th>Name Permainan</th>
-                        <th>Status</th>
-                        <th>Pemain</th>
+                        <th>Permainan</th>
+                        <th>Pemain (Skor)</th>
                         <th>Pemenang</th>
                         <% if (user.isAdmin) { %>
                             <th>User</th>
                             <% } %>
+                                <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,12 +34,9 @@
                                 <%= m.gameName %>
                             </td>
                             <td>
-                                <%= m.status %>
-                            </td>
-                            <td>
                                 <% for (const key in m.players) { if (Object.prototype.hasOwnProperty.call(m.players,
                                     key)) { const player=m.players[key]; %>
-                                    <%= player.name %><br>
+                                    <%= player.name %> (<%= player.score %>)<br>
                                         <% } } %>
                             </td>
                             <td>
@@ -56,6 +53,9 @@
                                         <% } %>
                                 </td>
                                 <% } %>
+                                    <td>
+                                        <%= m.status %>
+                                    </td>
                         </tr>
                         <% }) %>
                 </tbody>
