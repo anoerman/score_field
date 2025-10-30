@@ -42,14 +42,24 @@ npm install
 1. Start your MongoDB server:
   Ensure your local MongoDB instance is running. If you are using a cloud service like MongoDB Atlas, you can skip this step.
 
-2. Run the application:
+2. Run seeder:
+```
+    npm run seed
+```
+> This command will fill your database with default data. Use username `admin` with password `admin` to login and manage your application data.
+
+3. Run the application:
 ```
     npm start
 ```
 > This command will start the Express server. You will see a confirmation message in your terminal, indicating that the server is running and connected to the database.
 
-3. Access the application:
-  The application is now running and accessible. Depending on how your application is structured, you can interact with its API endpoints through a tool like Postman or by accessing the frontend if one exists.
+4. Access the application:
+  The application is now running and accessible. You can access the application here:
+  ```
+      http://localhost:3000/
+  ```
+  > Change port 3000 to your port number if you change your PORT from `.env`
 
 ## Contributing
 We welcome contributions to score_field! Please see our CONTRIBUTING.md file for details on how you can get involved.
